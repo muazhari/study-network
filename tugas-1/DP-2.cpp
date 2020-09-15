@@ -17,7 +17,7 @@
 char dp[9999][9999];
 
 // a. base case
-//    terjadi base case saat n==1 atau ketika mencapai tree leaf
+//    terjadi base case saat n==1 atau ketika mencapai tree leaf.
 //    dengan tiap pemanggil function memanggil 2 function kembali,
 //    maka time complexity nya adalah O(2^n).
 //    dan karena memiliki maximum stack pemanggilan function dari 1..n,
@@ -49,6 +49,5 @@ int main()
     ll disk = 3;
     towerOfHanoi(disk, 'A', 'C', 'B');
 
-  
-    return 0;
+      return 0;
 }
