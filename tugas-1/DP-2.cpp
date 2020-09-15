@@ -25,10 +25,12 @@ char dp[9999][9999];
 
 // b. draw recursive tree
 //    ***ada dilampiran***
+//    pola recursive berurutan secara in-order
 
 // c. codes
 void towerOfHanoi(ll n, char src, char dst, char aux)
 {
+    // base case
     if (n == 1)
     {
         printf("move disk %lld from tower %c to %c\n", n, src, dst);
@@ -36,6 +38,7 @@ void towerOfHanoi(ll n, char src, char dst, char aux)
     }
 
     towerOfHanoi(n - 1, src, aux, dst);
+    // in-order print
     printf("move disk %lld from tower %c to %c\n", n, src, dst);
     towerOfHanoi(n - 1, aux, dst, src);
 }
@@ -49,5 +52,5 @@ int main()
     ll disk = 3;
     towerOfHanoi(disk, 'A', 'C', 'B');
 
-      return 0;
+    return 0;
 }
