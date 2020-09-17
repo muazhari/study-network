@@ -51,7 +51,7 @@ ll dp[99999] = {0};
 ll towerOfHanoi2(ll n)
 {
     if (n < 2)
-        return 2;
+        return 1;
     else if (n == 2)
         return 3;
 
