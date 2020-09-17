@@ -14,8 +14,6 @@
 //    c. codes
 //    d. implement dp
 
-char dp[9999][9999];
-
 // a. base case
 //    terjadi base case saat n==1 atau ketika mencapai tree leaf.
 //    dengan tiap pemanggil function memanggil 2 function kembali,
@@ -28,7 +26,7 @@ char dp[9999][9999];
 //    pola recursive berurutan secara in-order
 
 // c. codes
-void towerOfHanoi(ll n, char src, char dst, char aux)
+void towerOfHanoi1(ll n, char src, char dst, char aux)
 {
     // base case
     if (n == 1)
@@ -37,20 +35,39 @@ void towerOfHanoi(ll n, char src, char dst, char aux)
         return;
     }
 
-    towerOfHanoi(n - 1, src, aux, dst);
+    towerOfHanoi1(n - 1, src, aux, dst);
     // in-order print
     printf("move disk %lld from tower %c to %c\n", n, src, dst);
-    towerOfHanoi(n - 1, aux, dst, src);
+    towerOfHanoi1(n - 1, aux, dst, src);
 }
 
 // d. implement dp
-//    tidak bisa diimplementasikan, dikarenakan tiap kali operasi pemanggilan function
+//    tidak bisa diimplementasikan dengan biasanya,
+//    dikarenakan tiap kali operasi pemanggilan function
 //    memiliki parameter masukan yg berbeda. jadi tidak bisa dimemoize kan
+//    kecuali hanya merespresentasikan hanya berapa step yang diperlukan.
+
+ll dp[99999] = {0};
+ll towerOfHanoi2(ll n)
+{
+    if (n < 2)
+        return 2;
+    else if (n == 2)
+        return 3;
+
+    if (!dp[n])
+        dp[n] = 1 + towerOfHanoi2(n - 1) + towerOfHanoi2(n - 1);
+    return dp[n];
+}
 
 int main()
 {
     ll disk = 3;
-    towerOfHanoi(disk, 'A', 'C', 'B');
+    towerOfHanoi1(disk, 'A', 'C', 'B');
+
+    ll steps = towerOfHanoi2(disk);
+
+    printf("%lld", steps);
 
     return 0;
 }
