@@ -18,7 +18,7 @@ int main()
     // jumlah pecahan coins yang kita miliki
     int coins[] = {3, 4, 11};
 
-    // inisialisasi semua input dp menjadi -1
+    // inisialisasi semua input dp menjadi input+1
     // agar kita bisa bandingkan menggunakan min(a, b)
     for (int i = 0; i <= input; i++)
     {
@@ -42,7 +42,7 @@ int main()
             if (i >= coins[j])
             {
                 // mengisi tabel berdasarkan memory dan koin sekarang
-                // dp[i]: ingatan pas koin sekarang (masih -1) => PRESENT
+                // dp[i]: ingatan pas koin sekarang (masih input+1) => PRESENT
                 // dp[i-coins[j]: ingatan setelah kasus dikurang koin yg diberikan => PAST
                 // +1: koin sekarang
                 int currentCoinsNeeded = dp[i - coins[j]] + 1;
@@ -57,10 +57,10 @@ int main()
     // print the main problem
     // cek apakah kita bisa memberikan kembalian
 
-    // bisa memberikan kembalian -> dp[input] sudah bukan -1 lagi
+    // bisa memberikan kembalian -> dp[input] sudah bukan input+1 lagi
     // karena kita sudah overwrite nilainya saat mengisi tabel
 
-    // tidak bisa memberikan kembalian -> dp[input] masih -1
+    // tidak bisa memberikan kembalian -> dp[input] masih input+1
     // karena kita tidak overwite nilainya (tidak masuk dalam kondisi if)
     (dp[input] == input + 1) ? puts("Tidak bisa membuat kembalian") : printf("%d\n", dp[input]);
 
